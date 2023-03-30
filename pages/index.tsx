@@ -1,8 +1,38 @@
 import Head from "next/head";
+import { useState } from "react";
 import { Container } from "../components/sharedstyles";
 import styled from "styled-components";
 
 export default function Home() {
+  const [input, setInput] = useState("");
+  const [result, setResult] = useState();
+
+  async function onSubmit(event) {
+    event.preventDefault();
+    try {
+      const response = await fetch("/api/generate", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ input: input }),
+      });
+
+      const data = await response.json();
+      if (response.status !== 200) {
+        throw data.error || new Error(`Request failed with status ${response.status}`);
+      }
+
+      setResult(data.result);
+      console.log(data.result);
+      setInput("");
+    } catch (error) {
+      // Consider implementing your own error handling logic here
+      console.error(error);
+      alert(error.message);
+    }
+  }
+
   return (
     <Container>
       <Head>
@@ -12,8 +42,11 @@ export default function Home() {
       </Head>
       <Title>OpenAI PoC</Title>
       <Logo src='/logo.png' />
-      <InputField type='text' />
-      <SubmitButton>전송하기</SubmitButton>
+      <Result>{result}</Result>
+      <Form onSubmit={onSubmit}>
+        <InputField type='text' value={input} onChange={(e) => setInput(e.target.value)} />
+        <SubmitButton type='submit' value={"전송하기"} />
+      </Form>
     </Container>
   );
 }
@@ -30,6 +63,17 @@ const Logo = styled.img`
   width: 80px;
 `;
 
+const Result = styled.div`
+  margin-bottom: 20px;
+`;
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
 const InputField = styled.input`
   margin-bottom: 30px;
   padding: 12px;
@@ -44,7 +88,7 @@ const InputField = styled.input`
   }
 `;
 
-const SubmitButton = styled.button`
+const SubmitButton = styled.input`
   padding: 12px;
   border-radius: 8px;
   border: none;
@@ -57,10 +101,5 @@ const SubmitButton = styled.button`
 
   &:hover {
     background-color: #0066cc;
-  }
-
-  &:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
   }
 `;
