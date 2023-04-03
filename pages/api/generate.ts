@@ -1,11 +1,12 @@
 import { Configuration, OpenAIApi } from "openai";
+import { NextApiRequest, NextApiResponse } from "next";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 const openai = new OpenAIApi(configuration);
 
-export default async function (req, res) {
+export default async function (req: NextApiRequest, res: NextApiResponse) {
   if (!configuration.apiKey) {
     res.status(500).json({
       error: {
