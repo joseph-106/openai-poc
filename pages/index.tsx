@@ -45,7 +45,7 @@ export default function Home() {
       <Result>{result}</Result>
       <Form onSubmit={onSubmit}>
         <InputField type='text' value={input} onChange={(e) => setInput(e.target.value)} />
-        <SubmitButton type='submit' value={"전송하기"} />
+        <SubmitButton type='submit' value={"Submit"} />
       </Form>
     </Container>
   );

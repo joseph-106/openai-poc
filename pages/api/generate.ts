@@ -27,7 +27,7 @@ export default async function (req, res) {
 
   try {
     const completion = await openai.createCompletion({
-      // 모델 설정
+      // Model setting
       model: "text-davinci-003",
       prompt: generatePrompt(input),
       temperature: 0.6,
@@ -51,7 +51,7 @@ export default async function (req, res) {
 }
 
 function generatePrompt(input: string) {
-  // 프롬프트 설정
+  // Prompt setting
   return `
     ${input}
     `;
