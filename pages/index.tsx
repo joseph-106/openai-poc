@@ -6,9 +6,11 @@ import styled from "styled-components";
 export default function Home() {
   const [input, setInput] = useState("");
   const [result, setResult] = useState();
+  const [isLoading, setIsLoading] = useState(false);
 
   async function onSubmit(event) {
     event.preventDefault();
+    setIsLoading(true);
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -26,10 +28,12 @@ export default function Home() {
       setResult(data.result);
       console.log(data.result);
       setInput("");
+      setIsLoading(false);
     } catch (error) {
       // Consider implementing your own error handling logic here
       console.error(error);
       alert(error.message);
+      setIsLoading(false);
     }
   }
 
@@ -42,7 +46,8 @@ export default function Home() {
       </Head>
       <Title>OpenAI PoC</Title>
       <Logo src='/logo.png' />
-      {result && <Result>{result}</Result>}
+      {isLoading && <Loading>Loading...</Loading>}
+      {result && !isLoading && <Result>{result}</Result>}
       <Form onSubmit={onSubmit}>
         <InputField type='text' value={input} onChange={(e) => setInput(e.target.value)} />
         <SubmitButton type='submit' value={"Submit"} />
@@ -61,6 +66,10 @@ const Title = styled.h1`
 const Logo = styled.img`
   margin-bottom: 30px;
   width: 80px;
+`;
+
+const Loading = styled.div`
+  margin-bottom: 20px;
 `;
 
 const Result = styled.div`
