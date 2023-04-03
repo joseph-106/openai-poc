@@ -8,7 +8,7 @@ export default function Home() {
   const [result, setResult] = useState();
   const [isLoading, setIsLoading] = useState(false);
 
-  async function onSubmit(event) {
+  async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setIsLoading(true);
     try {
@@ -50,7 +50,7 @@ export default function Home() {
       {result && !isLoading && <Result>{result}</Result>}
       <Form onSubmit={onSubmit}>
         <InputField type='text' value={input} onChange={(e) => setInput(e.target.value)} />
-        <SubmitButton type='submit' value={"Submit"} />
+        <SubmitButton disabled={isLoading} type='submit' value={"Submit"} />
       </Form>
     </Container>
   );
@@ -74,7 +74,7 @@ const Loading = styled.div`
 
 const Result = styled.div`
   padding: 10px;
-  max-width: 500px;
+  max-width: 400px;
   border: solid 1px #666;
   border-radius: 10px;
   margin-bottom: 20px;
@@ -90,6 +90,7 @@ const Form = styled.form`
 
 const InputField = styled.input`
   margin-bottom: 30px;
+  width: 400px;
   padding: 12px;
   border-radius: 8px;
   border: 2px solid ${({ theme }) => theme.colors.secondary};
@@ -110,10 +111,14 @@ const SubmitButton = styled.input`
   color: #fff;
   font-size: 16px;
   font-weight: bold;
-  cursor: pointer;
   transition: background-color 0.2s ease-in-out;
+  cursor: pointer;
 
   &:hover {
     background-color: #0066cc;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
   }
 `;
