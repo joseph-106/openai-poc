@@ -66,7 +66,7 @@ const Logo = styled.img`
 const Result = styled.div`
   padding: 10px;
   max-width: 500px;
-  border: solid 1px #ccc;
+  border: solid 1px #666;
   border-radius: 10px;
   margin-bottom: 20px;
   text-align: center;
@@ -83,12 +83,12 @@ const InputField = styled.input`
   margin-bottom: 30px;
   padding: 12px;
   border-radius: 8px;
-  border: 2px solid #ccc;
+  border: 2px solid ${({ theme }) => theme.colors.secondary};
   font-size: 16px;
   transition: border-color 0.2s ease-in-out;
 
   &:focus {
-    border-color: #1e90ff;
+    border-color: ${({ theme }) => theme.colors.primary};
     outline: none;
   }
 `;
@@ -97,7 +97,7 @@ const SubmitButton = styled.input`
   padding: 12px;
   border-radius: 8px;
   border: none;
-  background-color: #1e90ff;
+  background-color: ${({ theme }) => theme.colors.primary};
   color: #fff;
   font-size: 16px;
   font-weight: bold;
