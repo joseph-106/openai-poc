@@ -42,7 +42,7 @@ export default function Home() {
       </Head>
       <Title>OpenAI PoC</Title>
       <Logo src='/logo.png' />
-      <Result>{result}</Result>
+      {result && <Result>{result}</Result>}
       <Form onSubmit={onSubmit}>
         <InputField type='text' value={input} onChange={(e) => setInput(e.target.value)} />
         <SubmitButton type='submit' value={"Submit"} />
@@ -64,7 +64,12 @@ const Logo = styled.img`
 `;
 
 const Result = styled.div`
+  padding: 10px;
+  max-width: 500px;
+  border: solid 1px #ccc;
+  border-radius: 10px;
   margin-bottom: 20px;
+  text-align: center;
 `;
 
 const Form = styled.form`
