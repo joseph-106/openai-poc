@@ -28,7 +28,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
   try {
     const completion = await openai.createCompletion({
-      // Selected a model and adjusted the temperature
+      // Selecte a model and adjuste the temperature
       model: "text-davinci-003",
       prompt: generatePrompt(input),
       temperature: 0.6,
@@ -51,9 +51,13 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
+// Set up the prompt
+const prompt = "";
+
 function generatePrompt(input: string) {
-  // Set up the PROMPT
   return `
+    ${prompt}
+
     ${input}
     `;
 }
