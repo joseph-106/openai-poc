@@ -5,7 +5,8 @@ import styled from "styled-components";
 
 export default function Home() {
   const [input, setInput] = useState("");
-  const [result, setResult] = useState();
+  const [result, setResult] = useState("");
+  const [conversation, setConversation] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
 
   async function onSubmit(event: React.FormEvent<HTMLFormElement>) {
@@ -17,7 +18,12 @@ export default function Home() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ input: input }),
+        body: JSON.stringify({
+          conversation: conversation
+            .map((sentence, i) => (i % 2 === 0 ? `Me: ${sentence}` : `You: ${sentence}`))
+            .join("\n"),
+          input: input,
+        }),
       });
 
       const data = await response.json();
@@ -26,7 +32,7 @@ export default function Home() {
       }
 
       setResult(data.result);
-      console.log(data.result);
+      setConversation([...conversation, input, data.result.replace(/^\s+|\s+$|\n+/g, "")]);
       setInput("");
       setIsLoading(false);
     } catch (error) {

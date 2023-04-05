@@ -16,6 +16,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     return;
   }
 
+  const conversation = req.body.conversation || "";
   const input = req.body.input || "";
   if (input.trim().length === 0) {
     res.status(400).json({
@@ -30,7 +31,7 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
     const completion = await openai.createCompletion({
       // Selecte a model and adjuste the temperature
       model: "text-davinci-003",
-      prompt: generatePrompt(input),
+      prompt: generatePrompt(conversation, input),
       temperature: 0.6,
       max_tokens: 3000,
     });
@@ -52,12 +53,13 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 }
 
 // Set up the prompt
-const prompt = "";
+const prefix = "";
 
-function generatePrompt(input: string) {
+function generatePrompt(conversation: string, input: string) {
   return `
-    ${prompt}
-
-    ${input}
+    ${prefix}
+    ${conversation}
+    Me: ${input}
+    You: 
     `;
 }
