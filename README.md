@@ -54,7 +54,7 @@ You can customize the following model-related variables in the `setting.ts` file
 
 | Variable      | Description                                                                                                                 | Option                                         | Type   |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | ------ |
-| `PREFIX`      | Prefix to include in all conversations                                                                                      | Whatever you want                              | string |
+| `PREFIX`      | Prefix to include in all conversations                                                                                      | Whatever you want (language, role, tone..)     | string |
 | `MODEL`       | [Models](https://platform.openai.com/docs/models/overview)                                                                  | Available models                               | string |
 | `TEMPERATURE` | [Adjust your settings](https://platform.openai.com/docs/quickstart/adjust-your-settings)                                    | Number between 0 and 1                         | number |
 | `MAX_TOKENS`  | [What are tokens and how to count them?](https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them) | Maximum number of tokens allowed by each model | number |
