@@ -50,7 +50,7 @@ This repository was developed using [openai-node](https://github.com/openai/open
 
 ## Customizing the Model
 
-You can customize the following model-related variables in the `settings.ts` file.
+You can customize the following model-related variables in the `setting.ts` file.
 
 | Variable      | Description                                                                                                                 | Option                                         | Type   |
 | ------------- | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | ------ |
