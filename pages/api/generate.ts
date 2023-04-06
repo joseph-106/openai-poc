@@ -1,5 +1,6 @@
 import { Configuration, OpenAIApi } from "openai";
 import { NextApiRequest, NextApiResponse } from "next";
+import { SETTING } from "../../setting";
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -29,15 +30,13 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
 
   try {
     const completion = await openai.createCompletion({
-      // Selecte a model and adjuste the temperature
-      model: "text-davinci-003",
+      model: SETTING.MODEL,
       prompt: generatePrompt(conversation, input),
-      temperature: 0.6,
-      max_tokens: 3000,
+      temperature: SETTING.TEMPERATURE,
+      max_tokens: SETTING.MAX_TOKENS,
     });
     res.status(200).json({ result: completion.data.choices[0].text });
   } catch (error) {
-    // Consider adjusting the error handling logic for your use case
     if (error.response) {
       console.error(error.response.status, error.response.data);
       res.status(error.response.status).json(error.response.data);
@@ -52,12 +51,9 @@ export default async function (req: NextApiRequest, res: NextApiResponse) {
   }
 }
 
-// Set up the prompt
-const prefix = "";
-
 function generatePrompt(conversation: string, input: string) {
   return `
-    ${prefix}
+    ${SETTING.PREFIX}
     ${conversation}
     Me: ${input}
     You: 
