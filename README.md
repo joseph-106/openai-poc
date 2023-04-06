@@ -47,3 +47,14 @@ This repository was developed using [openai-node](https://github.com/openai/open
    ```bash
    $ npm run dev
    ```
+
+## Customizing the Model
+
+You can customize the following model-related variables in the `settings.ts` file.
+
+| Variable      | Description                                                                                                                 | Option                                         | Type   |
+| ------------- | --------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- | ------ |
+| `PREFIX`      | Prefix to include in all conversations                                                                                      | Whatever you want                              | string |
+| `MODEL`       | [Models](https://platform.openai.com/docs/models/overview)                                                                  | Available models                               | string |
+| `TEMPERATURE` | [Adjust your settings](https://platform.openai.com/docs/quickstart/adjust-your-settings)                                    | Number between 0 and 1                         | number |
+| `MAX_TOKENS`  | [What are tokens and how to count them?](https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them) | Maximum number of tokens allowed by each model | number |
