@@ -1,6 +1,6 @@
 # OpenAI PoC implemented in Next.js
 
-![image](https://user-images.githubusercontent.com/61545957/229975828-d595518e-ddb2-483d-8bcf-d88a3ed12417.png)
+![GIF](https://user-images.githubusercontent.com/61545957/230609955-0af13e54-bd23-42d6-9548-ebcf54e41ae4.gif)
 
 This repository was developed using [openai-node](https://github.com/openai/openai-node) and based on [openai-quickstart-node](https://github.com/openai/openai-quickstart-node), with several additional elements added.
 
@@ -47,6 +47,8 @@ This repository was developed using [openai-node](https://github.com/openai/open
    ```bash
    $ npm run dev
    ```
+
+8. Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
 
 ## Customizing the Model
 
