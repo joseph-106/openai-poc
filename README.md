@@ -48,7 +48,7 @@ This repository was developed using [openai-node](https://github.com/openai/open
    $ npm run dev
    ```
 
-8. Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+8. Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment))
 
 ## Customizing the Model
 
@@ -60,3 +60,7 @@ You can customize the following model-related variables in the `setting.ts` file
 | `MODEL`       | [Models](https://platform.openai.com/docs/models/overview)                                                                  | Available models                               | string |
 | `TEMPERATURE` | [Adjust your settings](https://platform.openai.com/docs/quickstart/adjust-your-settings)                                    | Number between 0 and 1                         | number |
 | `MAX_TOKENS`  | [What are tokens and how to count them?](https://help.openai.com/en/articles/4936856-what-are-tokens-and-how-to-count-them) | Maximum number of tokens allowed by each model | number |
+
+## License
+
+[MIT](https://github.com/joseph-106/openai-poc/blob/main/LICENSE)
